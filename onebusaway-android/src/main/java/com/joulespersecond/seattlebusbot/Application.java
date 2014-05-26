@@ -44,10 +44,14 @@ public class Application extends android.app.Application {
 
     private static Application mApp;
 
+    private static Analytics analytics;
+
     @Override
     public void onCreate() {
         super.onCreate();
         //ExceptionHandler.register(this, BUG_REPORT_URL);
+
+        analytics = new Analytics(this);
 
         mApp = this;
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -74,6 +78,10 @@ public class Application extends android.app.Application {
 
     public static SharedPreferences getPrefs() {
         return get().mPrefs;
+    }
+
+    public static Analytics getAnalytics() {
+        return analytics;
     }
 
     //

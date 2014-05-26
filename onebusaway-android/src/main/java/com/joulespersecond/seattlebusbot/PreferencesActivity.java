@@ -66,9 +66,18 @@ public class PreferencesActivity extends SherlockPreferenceActivity
     }
 
     @Override
+    public void onPause() {
+        Application.getAnalytics().activityStop(this);
+
+        super.onPause();
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         changePreferenceSummary(getString(R.string.preference_key_region));
+
+        Application.getAnalytics().activityStart(this);
     }
 
     /**
